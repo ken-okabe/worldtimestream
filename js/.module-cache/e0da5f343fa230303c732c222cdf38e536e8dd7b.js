@@ -20,7 +20,7 @@ ___.world = ___(function(t)  {
   });
 
   ___.world = ___a.appear(0);
-  var f = function()  {
+  var f = function() {
     ___.world = ___a.appear(___a.t() + 1);
 
   };
