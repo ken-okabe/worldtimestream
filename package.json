@@ -1,6 +1,6 @@
 {
   "name": "worldtimestream",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "world time stream, the tiny FRP ",
   "main": "/js/worldtimestream.js",
   "scripts": {
