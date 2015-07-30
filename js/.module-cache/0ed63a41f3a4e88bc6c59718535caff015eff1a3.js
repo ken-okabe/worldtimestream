@@ -1,7 +1,7 @@
-(() => {
+(function()  {
   'use strict';
 
-  var extendMethod = (object, methodName, method) => {
+  var extendMethod = function(object, methodName, method)  {
     if (typeof Object.defineProperty !== 'function') {
       object[methodName] = method;
     } else {
@@ -13,19 +13,19 @@
     }
   };
 
-  extendMethod(Object.prototype, 'argumentNames', function() {
+  extendMethod(Object.prototype, 'argumentNames', function()  {
     var names = this.toString().match(/^[\s\(]*function[^(]*\(([^)]*)\)/)[1]
       .replace(/\/\/.*?[\r\n]|\/\*(?:.|[\r\n])*?\*\//g, '')
       .replace(/\s+/g, '').split(',');
     return names.length === 1 && !names[0] ? [] : names;
-  });
+  }.bind(this));
 
   var dynamicKey;
   var instance = false;
 
-  var worldtimestream = (cbF) => {
+  var worldtimestream = function(cbF)  {
     if (typeof cbF === "function") {
-      return () => {
+      return function()  {
         if (instance === false) {
           dynamicKey = cbF.argumentNames()[0];
           cbF(Date.now);
@@ -44,13 +44,13 @@
         {
           val: //value.val
           {
-            get() {
+            get:function() {
               return state;
             },
-            set(x) {
+            set:function(x) {
               state = x;
               computingF.map(
-                (f) => {
+                function(f)  {
                   f(x);
                 });
               return;
@@ -59,20 +59,20 @@
         });
 
       var o = {
-        compute(f) {
-          var f1 = () => {
+        compute:function(f) {
+          var f1 = function()  {
             computingF[computingF.length] = f; //push  f
           };
           return f1;
         },
-        appear(a) {
-          var f1 = () => {
+        appear:function(a) {
+          var f1 = function()  {
             value.val = a;
           };
           return f1;
         }
       };
-      o[dynamicKey] = () => {
+      o[dynamicKey] = function()  {
         return value.val;
       };
 
@@ -84,15 +84,15 @@
     {
       world: //our physical world
       {
-        set(f) {
+        set:function(f) {
           f();
         }
       }
     });
 
-  worldtimestream.log = () => {
+  worldtimestream.log = function()  {
     var arg = arguments;
-    var f = () => {
+    var f = function()  {
       console.info.apply(console, arg);
     };
     return f;
@@ -105,4 +105,4 @@
     root.___ = worldtimestream;
   }
 
-})();
+}.bind(this))();
