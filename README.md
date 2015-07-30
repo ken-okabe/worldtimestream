@@ -21,12 +21,12 @@ ___.world = ___((t) => {
     ___.world = ___.log(t(), 'b', ___b.t());
   });
 
-  ___.world = ___a.compute(function(x) {
+  ___.world = ___a.compute((x) => {
     ___.world = ___b.appear(x * 5);
   });
 
   ___.world = ___a.appear(0);
-  var f = function() {
+  var f = () => {
     ___.world = ___a.appear(___a.t() + 1);
 
   };
@@ -34,4 +34,5 @@ ___.world = ___((t) => {
   var timer = setInterval(f, 1000);
 
 });
+
 ```
