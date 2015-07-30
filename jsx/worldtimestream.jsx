@@ -28,6 +28,9 @@
       return () => {
         if (instance === false) {
           dynamicKey = cbF.argumentNames()[0];
+          if (typeof dynamicKey === "undefined") {
+            dynamicKey = 't'; //fallback you must use t()
+          }
           cbF(Date.now);
           instance = true;
         } else {
