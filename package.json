@@ -1,0 +1,27 @@
+{
+  "name": "worldtimestream",
+  "version": "1.0.0",
+  "description": "world time stream, the tiny FRP ",
+  "main": "/js/worldtimestream.js",
+  "scripts": {
+    "test": "node /js/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenokabe/worldtimestream.git"
+  },
+  "keywords": [
+    "FRP",
+    "stream",
+    "time",
+    "component",
+    "functional",
+    "reactive"
+  ],
+  "author": "Ken Okabe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kenokabe/worldtimestream/issues"
+  },
+  "homepage": "https://github.com/kenokabe/worldtimestream#readme"
+}
