@@ -1,10 +1,9 @@
 # worldtimestream
 world time stream, the tiny FRP
 
-
 https://www.npmjs.com/package/worldtimestream
-https://github.com/kenokabe/worldtimestream
 
+https://github.com/kenokabe/worldtimestream
 
 
 ##Install

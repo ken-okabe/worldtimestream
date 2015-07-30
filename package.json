@@ -1,10 +1,10 @@
 {
   "name": "worldtimestream",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "world time stream, the tiny FRP ",
-  "main": "/js/worldtimestream.js",
+  "main": "./js/worldtimestream.js",
   "scripts": {
-    "test": "node /js/test.js"
+    "test": "node ./js/test.js"
   },
   "repository": {
     "type": "git",
