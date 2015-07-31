@@ -1,6 +1,6 @@
 {
   "name": "worldtimestream",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "world time stream, the tiny FRP ",
   "main": "./js/worldtimestream.js",
   "scripts": {
@@ -14,6 +14,7 @@
     "FRP",
     "stream",
     "time",
+    "pyisics",
     "component",
     "functional",
     "reactive"

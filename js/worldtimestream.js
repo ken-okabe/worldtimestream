@@ -1,7 +1,7 @@
-(function()  {
+(function() {
   'use strict';
 
-  var extendMethod = function(object, methodName, method)  {
+  var extendMethod = function(object, methodName, method) {
     if (typeof Object.defineProperty !== 'function') {
       object[methodName] = method;
     } else {
@@ -23,9 +23,9 @@
   var dynamicKey;
   var instance = false;
 
-  var worldtimestream = function(cbF)  {
+  var worldtimestream = function(cbF) {
     if (typeof cbF === "function") {
-      return function()  {
+      return function() {
         if (instance === false) {
           dynamicKey = cbF.argumentNames()[0];
           if (typeof dynamicKey === "undefined") {
@@ -47,13 +47,13 @@
         {
           val: //value.val
           {
-            get:function() {
+            get: function() {
               return state;
             },
-            set:function(x) {
+            set: function(x) {
               state = x;
               computingF.map(
-                function(f)  {
+                function(f) {
                   f(x);
                 });
               return;
@@ -62,20 +62,20 @@
         });
 
       var o = {
-        compute:function(f) {
-          var f1 = function()  {
+        compute: function(f) {
+          var f1 = function() {
             computingF[computingF.length] = f; //push  f
           };
           return f1;
         },
-        appear:function(a) {
-          var f1 = function()  {
+        appear: function(a) {
+          var f1 = function() {
             value.val = a;
           };
           return f1;
         }
       };
-      o[dynamicKey] = function()  {
+      o[dynamicKey] = function() {
         return value.val;
       };
 
@@ -87,15 +87,15 @@
     {
       world: //our physical world
       {
-        set:function(f) {
+        set: function(f) {
           f();
         }
       }
     });
 
-  worldtimestream.log = function()  {
+  worldtimestream.log = function() {
     var arg = arguments;
-    var f = function()  {
+    var f = function() {
       console.info.apply(console, arg);
     };
     return f;

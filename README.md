@@ -23,7 +23,7 @@ https://raw.githubusercontent.com/kenokabe/worldtimestream/master/js/worldtimest
 
 **test.jsx**
 
-```
+```js
 'use strict';
 
 var ___ = require('./worldtimestream.js');
@@ -78,3 +78,91 @@ ___.world = ___((t) => {
 1438234703215 'a' 8
 1438234703215 'b' 40
 ```
+
+##React Physics
+
+![enter image description here](https://lh3.googleusercontent.com/4W_WOyyW4pK6--X5WcJWHNOHmlPuj-3bSuW3g0snPM8=w340-h240-no)
+
+$$
+x = (v_0 \cosθ)t　　
+$$
+
+$$
+y = (v_0 \sinθ) t-gt²
+$$
+
+
+###code
+
+```js
+
+___.world = ___((t) => { // world engine
+  //===========================================================================
+  //MKS system of units
+
+  var ___coordinate = ___();
+  var T0 = t() / 1000; //convert unit to second
+  var V0 = 85.0; // m/s
+  var deg = 30; //degree
+  var THETA = deg / 180 * Math.PI; //radian
+  var G = 9.8; //gravity const
+
+  var coordinateEquation = (t) => {
+    var x = V0 * Math.cos(THETA) * t;
+    var y = V0 * Math.sin(THETA) * t - G * Math.pow(t, 2);
+    return {
+      x: x,
+      y: y
+    };
+  };
+
+
+  //==============================================================
+  var Drawscale = 4; //4 dot = 1 meter
+
+  var ReactComponent = React.createClass(
+    {
+      componentWillMount() {
+        var com = this;
+        ___.world = ___coordinate.compute((coordinate) => {
+          ___.world = com.props.___x.appear(50 + coordinate.x * Drawscale);
+          ___.world = com.props.___y.appear(300 - coordinate.y * Drawscale);
+          com.forceUpdate();
+        });
+
+        var f = () => {
+          ___.world = ___coordinate.appear(coordinateEquation(t() / 1000 - T0));
+        };
+        var timer = setInterval(f, 10); //calculate 10milsec resolution
+      },
+
+      render() {
+        var com = this;
+
+        var el = (
+        <div>
+          <h1>For new shot, Just Reload the browser page</h1>
+          <svg height = "100%"  width = "100%">
+              <circle r="5" fill="blue"
+        cx = {this.props.___x.t()}
+        cy = {this.props.___y.t()}/>
+          </svg>
+        </div>
+        );
+        return el;
+      }
+    });
+
+
+  var mount = React.render(<ReactComponent ___x={___()} ___y={___()} />, document.body);
+
+
+//==============================================================
+//===========================================================================
+});
+
+```
+
+###Live Demo
+
+http://sakurafunctional.github.io/demo/react-physics/
