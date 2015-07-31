@@ -84,13 +84,12 @@ ___.world = ___((t) => {
 ![enter image description here](https://lh3.googleusercontent.com/4W_WOyyW4pK6--X5WcJWHNOHmlPuj-3bSuW3g0snPM8=w340-h240-no)
 
 $$
-x = (v_0 \cosθ)t　　
+x=(v_0\cosθ)t
 $$
 
 $$
-y = (v_0 \sinθ) t-gt²
+y = (v_0\sinθ)t - gt^2
 $$
-
 
 ###code
 
