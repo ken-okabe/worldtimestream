@@ -33,20 +33,8 @@
           }
 
           var o = Date.now;
-          o.computeInterval = function()  {
-            var arg = arguments;
-            var f = function()  {
-              setInterval(arg[0], arg[1]);
-            };
-            return f;
-          };
-          o.computeTimeout = function()  {
-            var arg = arguments;
-            var f = function()  {
-              setTimeout(arg[0], arg[1]);
-            };
-            return f;
-          };
+          o.computeInterval = setInterval;
+          o.computeTimeout = setTimeout;
 
           cbF(o);
           instance = true;

@@ -31,7 +31,24 @@
           if (typeof dynamicKey === "undefined") {
             dynamicKey = 't'; //fallback you must use t()
           }
-          cbF(Date.now);
+
+          var o = Date.now;
+          o.computeInterval = () => {
+            var arg = arguments;
+            var f = () => {
+              setInterval(arg[0], arg[1]);
+            };
+            return f;
+          };
+          o.computeTimeout = () => {
+            var arg = arguments;
+            var f = () => {
+              setTimeout(arg[0], arg[1]);
+            };
+            return f;
+          };
+
+          cbF(o);
           instance = true;
         } else {
           throw "ERROR: This code runs in your single universe.";

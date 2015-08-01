@@ -43,7 +43,7 @@
           o.computeTimeout = function()  {
             var arg = arguments;
             var f = function()  {
-              setTimeout(arg[0], arg[1]);
+              console.info.apply(console, arg);
             };
             return f;
           };

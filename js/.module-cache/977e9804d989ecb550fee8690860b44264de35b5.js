@@ -25,6 +25,7 @@ ___.world = ___(function(t)  {
   };
   var f = function()  {
     ___.world = ___a.appear(___a.t() + 1);
+
   };
 
   ___.world = t.computeTimeout(f0, 0);

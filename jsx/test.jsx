@@ -19,12 +19,15 @@ ___.world = ___((t) => {
     ___.world = ___b.appear(x * 5);
   });
 
-  ___.world = ___a.appear(0);
+  var f0 = () => {
+    ___.world = ___.log('test start');
+    ___.world = ___a.appear(0);
+  };
   var f = () => {
     ___.world = ___a.appear(___a.t() + 1);
-
   };
 
-  var timer = setInterval(f, 1000);
+  ___.world = t.computeTimeout(f0, 0);
+  ___.world = t.computeInterval(f, 1000);
 
 });
