@@ -45,15 +45,19 @@ ___.world = ___((t) => {
     ___.world = ___b.appear(x * 5);
   });
 
-  ___.world = ___a.appear(0);
+  var f0 = () => {
+    ___.world = ___.log('test start');
+    ___.world = ___a.appear(0);
+  };
   var f = () => {
     ___.world = ___a.appear(___a.t() + 1);
-
   };
 
-  var timer = setInterval(f, 1000);
+  ___.world = t.computeTimeout(f0, 0);
+  ___.world = t.computeInterval(f, 1000);
 
 });
+
 ```
 
 **result**
@@ -94,6 +98,7 @@ $$
 ###code
 
 ```js
+
 ___.world = ___((t) => { // world engine
   //===========================================================================
   //MKS system of units
@@ -132,12 +137,10 @@ ___.world = ___((t) => { // world engine
           var f = () => {
             ___.world = ___coordinate.appear(coordinateEquation((t() - T0) / 1000));
           };
-          var timer = setInterval(f, 10); //calculate 10milsec resolution
-
+          ___.world = t.computeInterval(f, 10); //calculate 10milsec resolution
         };
-        setTimeout(init, 0);
+        ___.world = t.computeTimeout(init, 0);
       },
-
       render() {
         var com = this;
 
@@ -159,6 +162,7 @@ ___.world = ___((t) => { // world engine
 //==============================================================
 //===========================================================================
 });
+
 
 ```
 

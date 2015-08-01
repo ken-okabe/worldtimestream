@@ -169,12 +169,10 @@ ___.world = ___((t) => { // world engine
           var f = () => {
             ___.world = ___coordinate.appear(coordinateEquation((t() - T0) / 1000));
           };
-          var timer = setInterval(f, 10); //calculate 10milsec resolution
-
+          ___.world = t.computeInterval(f, 10); //calculate 10milsec resolution
         };
-        setTimeout(init, 0);
+        ___.world = t.computeTimeout(init, 0);
       },
-
       render() {
         var com = this;
 
