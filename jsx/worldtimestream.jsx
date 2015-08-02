@@ -1,6 +1,5 @@
+'use strict';
 (() => {
-  'use strict';
-
   var extendMethod = (object, methodName, method) => {
     if (typeof Object.defineProperty !== 'function') {
       object[methodName] = method;
@@ -12,17 +11,14 @@
       });
     }
   };
-
   extendMethod(Object.prototype, 'argumentNames', function() {
     var names = this.toString().match(/^[\s\(]*function[^(]*\(([^)]*)\)/)[1]
       .replace(/\/\/.*?[\r\n]|\/\*(?:.|[\r\n])*?\*\//g, '')
       .replace(/\s+/g, '').split(',');
     return names.length === 1 && !names[0] ? [] : names;
   });
-
   var dynamicKey;
   var instance = false;
-
   var worldtimestream = (cbF) => {
     if (typeof cbF === "function") {
       return () => {
@@ -31,23 +27,19 @@
           if (typeof dynamicKey === "undefined") {
             dynamicKey = 't'; //fallback you must use t()
           }
-
           var o = Date.now;
-          o.computeInterval = () => {
-            var arg = arguments;
+          o.computeInterval = (...args) => {
             var f = () => {
-              setInterval(arg[0], arg[1]);
+              setInterval(args[0], args[1]);
             };
             return f;
           };
-          o.computeTimeout = () => {
-            var arg = arguments;
+          o.computeTimeout = (...args) => {
             var f = () => {
-              setTimeout(arg[0], arg[1]);
+              setTimeout(args[0], args[1]);
             };
             return f;
           };
-
           cbF(o);
           instance = true;
         } else {
@@ -56,10 +48,8 @@
       };
     } else {
       var computingF = [];
-
       var value = {};
       var state;
-
       Object.defineProperties(value,
         {
           val: //value.val
@@ -77,7 +67,6 @@
             }
           }
         });
-
       var o = {
         compute(f) {
           var f1 = () => {
@@ -95,11 +84,9 @@
       o[dynamicKey] = () => {
         return value.val;
       };
-
       return o;
     }
   };
-
   Object.defineProperties(worldtimestream,
     {
       world: //our physical world
@@ -109,20 +96,17 @@
         }
       }
     });
-
-  worldtimestream.log = () => {
-    var arg = arguments;
+  worldtimestream.log = (...args) => {
     var f = () => {
-      console.info.apply(console, arg);
+      console.info.apply(console, args);
     };
     return f;
   };
 
-  var root = this;
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = worldtimestream;
   } else {
-    root.___ = worldtimestream;
+    window.___ = worldtimestream;
   }
 
 })();
