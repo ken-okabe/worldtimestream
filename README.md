@@ -99,39 +99,44 @@ $$
 
 ```js
 
-___.world = ___((t) => { // world engine
-  //===========================================================================
-  //MKS system of units
 
-  var ___coordinate = ___();
+  ___.world = ___((t) => { // world engine
+    //===========================================================================
+    //MKS system of units
 
-  var V0 = 85.0; // m/s
-  var deg = 30; //degree
-  var THETA = deg / 180 * Math.PI; //radian
-  var G = 9.8; //gravity const
+    var ___coordinate = ___();
 
-  var coordinateEquation = (t) => {
-    var x = V0 * Math.cos(THETA) * t;
-    var y = V0 * Math.sin(THETA) * t - G * Math.pow(t, 2);
-    return {
-      x: x,
-      y: y
+    var V0 = 85.0; // m/s
+    var deg = 30; //degree
+    var THETA = deg / 180 * Math.PI; //radian
+    var G = 9.8; //gravity const
+
+    var coordinateEquation = (t) => {
+      var x = V0 * Math.cos(THETA) * t;
+      var y = V0 * Math.sin(THETA) * t - G * Math.pow(t, 2);
+      return {
+        x: x,
+        y: y
+      };
     };
-  };
+    //
+    //==============================================================
+    var Drawscale = 4; //4 dot = 1 meter
 
-  //==============================================================
-  var Drawscale = 4; //4 dot = 1 meter
-
-  var ReactComponent = React.createClass(
-    {
-      componentWillMount() {
-        var com = this;
+    class ReactComponent extends React . Component {
+      static get defaultProps() {
+        return {
+          ___x: ___(),
+          ___y: ___()
+        };
+      }
+      constructor(props) {
+        super(props);
         ___.world = ___coordinate.compute((coordinate) => {
-          ___.world = com.props.___x.appear(50 + coordinate.x * Drawscale);
-          ___.world = com.props.___y.appear(300 - coordinate.y * Drawscale);
-          com.forceUpdate();
+          ___.world = this.props.___x.appear(50 + coordinate.x * Drawscale);
+          ___.world = this.props.___y.appear(300 - coordinate.y * Drawscale);
+          this.forceUpdate();
         });
-
         var init = () => {
           var T0 = t();
           var f = () => {
@@ -140,10 +145,8 @@ ___.world = ___((t) => { // world engine
           ___.world = t.computeInterval(f, 10); //calculate 10milsec resolution
         };
         ___.world = t.computeTimeout(init, 0);
-      },
+      }
       render() {
-        var com = this;
-
         var el = (
         <div>
           <h1>For new shot, Just Reload the browser page</h1>
@@ -156,13 +159,12 @@ ___.world = ___((t) => { // world engine
         );
         return el;
       }
-    });
+    }
 
-  var mount = React.render(<ReactComponent ___x={___()} ___y={___()} />, document.body);
-//==============================================================
-//===========================================================================
-});
-
+    var mount = React.render(<ReactComponent />, document.body);
+  //==============================================================
+  //===========================================================================
+  });
 
 ```
 
