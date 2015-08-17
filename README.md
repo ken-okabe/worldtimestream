@@ -6,5 +6,5 @@ https://www.npmjs.com/package/worldtimestream
 https://github.com/kenokabe/worldtimestream
 
 
-##This project is epreciated, check out `[timeengine](https://github.com/kenokabe/timeengine)`
+##This project is epreciated, check out [timeengine](https://github.com/kenokabe/timeengine)
 
