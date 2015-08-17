@@ -1,5 +1,6 @@
-'use strict';
+
 (() => {
+  'use strict';
   var extendMethod = (object, methodName, method) => {
     if (typeof Object.defineProperty !== 'function') {
       object[methodName] = method;
